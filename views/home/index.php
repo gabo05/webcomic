@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title></title>
+        <title>Comic #<?php echo $this->model->real_id ?></title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="css/style.css" rel="stylesheet">
@@ -29,5 +29,15 @@
         <footer>
             <p>&copy;<?php echo $this->model->year?></p>
         </footer>
+        <?php if($this->model->change_url){?>
+            <input type="hidden" id="cid" value="<?php echo $this->model->real_id ?>">
+            <script>
+                var id = document.getElementById('cid').value;
+                var current = location.href.split('/');
+                current[current.length - 1] = id;
+                var newurl = current.join('/');
+                window.history.pushState('object', 'Comic #'+id, newurl);
+            </script>
+        <?php } ?>
     </body>
 </html>

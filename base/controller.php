@@ -43,6 +43,11 @@
                 header("Location: $url", true, ($permanent === true) ? 301 : 302);
             }
         }
+        public function getBase(): string{
+            $path = explode("/", $_SERVER['REQUEST_URI']);
+
+            return "/".$path[1];
+        }
     }
     
 ?>

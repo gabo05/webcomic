@@ -30,7 +30,7 @@
          */
         public function getComicById(int $id){
             $comic = $this->get("https://xkcd.com/$id/info.0.json");
-
+            
             return $comic;
         }
     }

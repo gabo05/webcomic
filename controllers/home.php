@@ -8,17 +8,33 @@
             $helper = new \helpers\ComicHelper();
 
             $model = $helper->getTodayComic();
-            $mode->last = $model->num;
-
+            $model->last = $model->num;
+            $model->real_id=$model->num;
             return $this->view('index', $model);
         }
         public function comic(array $params){
             $helper = new \helpers\ComicHelper();
-            //var_dump
-            $model = $helper->getComicById(intval($params[3]));
-            $model->last = $helper->getTodayComic()->num;
+            $id = intval($params[3]);
+            $id_ok = $id;
 
-            return $this->view('index', $model);
+            $today = $helper->getTodayComic();
+
+            if($id > $today->num){
+                return $this->view('404');
+            }
+            while($model == null && $id_ok <= $today->num){
+                $model = $helper->getComicById($id_ok);
+                if($model == null)
+                    $id_ok++;
+            }
+            if($model != null){
+                $model->real_id = $id_ok;
+                $model->change_url = $id != $id_ok;
+                $model->last = $today->num;
+                
+                return $this->view('index', $model);
+            }
+            return $this->view('404');
         }
     }
 ?>
