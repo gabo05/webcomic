@@ -25,7 +25,7 @@
          */
         function __construct(string $name, string $controller, $model) {
             $this->name = $name;
-            $this->controller = $controller;
+            $this->controller = strtolower($controller);
             $this->model = $model;
         }
         /**
@@ -33,7 +33,7 @@
          */
         public function render() {
             $path = "views/{$this->controller}/{$this->name}.php";
-
+            
             if(!file_exists($path)){
                 $path = "views/shared/{$this->name}.php";
             }

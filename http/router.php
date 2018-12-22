@@ -1,6 +1,8 @@
 <?php
     namespace http;
-
+    /**
+     * Class that routes the requests
+     */
     class Router{
         private $customRoutes = array(
             array(
@@ -12,6 +14,9 @@
         public function isNullOrEmpty(string $str){
             return $str == '' || $str == null;
         }
+        /**
+         * Handles the request
+         */
         public function handleRequest() {
             $path = preg_replace('/^\/[a-z0-9-_$()]+/', '', $_SERVER['REQUEST_URI'], 1);
 
@@ -28,6 +33,7 @@
                     break;
                 }
             }
+            
             $controllerClass = '\\controllers\\'.$controller.'Controller';
     
             $controllerInstance = new $controllerClass();

@@ -4,8 +4,11 @@
     class HomeController extends \base\Controller{
 
         public function index(array $params) {
-            $model = new \stdClass();
-            $model->message = 'Hello!!';
+            
+            $helper = new \helpers\ComicHelper();
+
+            $model = $helper->getTodayComic();
+
             return $this->view('index', $model);
         }
         public function data(){

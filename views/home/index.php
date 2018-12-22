@@ -11,6 +11,16 @@
     </head>
     <body>
         <h1>Welcome to Webcomic App</h1>
-        <p><?php echo $this->model->message; ?></p>
+        <h2><?php echo $this->model->safe_title; ?></h2>
+        <div>
+            <img src="<?php echo $this->model->img?>" alt="<?php echo $this->model->alt?>">
+        </div>
+        <div>
+            <p><?php echo $this->model->alt?></p>
+        </div>
+        <div><a href="#">Previus</a></div>
+        <footer>
+            <p>&copy;<?php echo $this->model->year?></p>
+        </footer>
     </body>
 </html>
