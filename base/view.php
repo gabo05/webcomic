@@ -39,5 +39,10 @@
             }
             require_once($path);
         }
+        public function getBase(): string{
+            $path = explode("/", $_SERVER['REQUEST_URI']);
+
+            return "/".$path[1];
+        }
     }
 ?>

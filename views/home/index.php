@@ -16,9 +16,16 @@
             <img src="<?php echo $this->model->img?>" alt="<?php echo $this->model->alt?>">
         </div>
         <div>
-            <p><?php echo $this->model->alt?></p>
+            <p><?php echo $this->model->alt ?></p>
         </div>
-        <div><a href="#">Previus</a></div>
+        <div>
+            <?php if($this->model->num > 1) {?>
+                <a href="<?php echo $this->getBase() ?>/comic/<?php echo ($this->model->num - 1) ?>">Previus</a>
+            <?php } ?>
+            <?php if($this->model->num < $this->model->last) {?>
+                <a href="<?php echo $this->getBase() ?>/comic/<?php echo ($this->model->num + 1)?>">Next</a>
+            <?php } ?>
+        </div>
         <footer>
             <p>&copy;<?php echo $this->model->year?></p>
         </footer>
