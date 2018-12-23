@@ -33,5 +33,26 @@
             
             return $comic;
         }
+        public function getSafeComicById(int $id){
+            $id_ok = $id;
+
+            $today = $this->getTodayComic();
+
+            if($id > $today->num){
+                return null;
+            }
+            while($model == null && $id_ok <= $today->num){
+                $model = $this->getComicById($id_ok);
+                if($model == null)
+                    $id_ok++;
+            }
+            if($model != null){
+                $model->real_id = $id_ok;
+                $model->change_url = $id != $id_ok;
+                $model->last = $today->num;
+                
+                return $model;
+            }
+        }
     }
 ?>
